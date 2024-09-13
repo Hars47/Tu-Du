@@ -3,8 +3,8 @@ import todo_icon from '../assets/todo_icon.png';
 import TodoItems from './TodoItems';
 
 const Todo = () => {
-
-    const [todoList, setTodoList] = React.useState([]);
+    /* JSON.parse(localStorage.getItem("todos")) will return an array of objects from local storage.*/
+    const [todoList, setTodoList] = React.useState(localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")) : []);
 
     const inputRef = useRef();
 
@@ -46,7 +46,8 @@ const Todo = () => {
     }
 
     useEffect(() => {
-        console.log(todoList);        
+        /* Converts the todoList array to a string and stores it in localStorage as "todos".*/
+        localStorage.setItem("todos", JSON.stringify(todoList))       
     }, [todoList])
 
     return (
