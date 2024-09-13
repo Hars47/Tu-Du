@@ -27,6 +27,13 @@ const Todo = () => {
 
     }
 
+    const deleteTodo = (id) => {
+        setTodoList((prvTodos)=>{
+            /* Returns all ids except the id passed as argument.*/
+            return prvTodos.filter((todo) => todo.id !== id);
+        });
+    }
+
     return (
         <div className='bg-white place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-[550px] rounded-xl'>
 
@@ -49,7 +56,7 @@ const Todo = () => {
 
             <div>
                 {todoList.map((item, index)=>{
-                    return <TodoItems key={index} text={item.text} id={item.id} isComplete={item.isComplete} />
+                    return <TodoItems key={index} text={item.text} id={item.id} isComplete={item.isComplete} deleteTodo={deleteTodo}/>
                 })}
             </div>
 
